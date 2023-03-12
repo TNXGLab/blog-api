@@ -55,3 +55,6 @@ async def ip2region(request: Request, ip: str = None):
 
 # 获取系统环境变量LEANCLOUD_APP_PORT
 port = os.getenv('LEANCLOUD_APP_PORT')
+
+uvicorn.run('main:app', host='0.0.0.0', proxy_headers=True,
+            port=int(port), forwarded_allow_ips='*')
